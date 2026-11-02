@@ -1,0 +1,14 @@
+# Generated reports and logs
+output/
+logs/
+*.log
+testResults.xml
+coverage.xml
+# Local configuration (contains real server names); commit only config/examples/
+config/*.psd1
+!config/examples/*.psd1
+# Credentials must never be committed
+*.xml.cred
+*.pfx
+.env
+.vscode/

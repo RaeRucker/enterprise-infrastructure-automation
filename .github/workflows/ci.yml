@@ -1,0 +1,64 @@
+# Lint and test the InfraOps module on Windows and Linux. All external systems are
+# mocked in the tests, so no credentials or network access to real servers are used.
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  analyze:
+    name: PSScriptAnalyzer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - shell: pwsh
+        run: |
+          Install-Module PSScriptAnalyzer -RequiredVersion 1.24.0 -Force -Scope CurrentUser
+          $findings = @('./src', './scripts' | ForEach-Object { Invoke-ScriptAnalyzer -Path $_ -Recurse -Severity Warning,Error }) +
+                      @(Invoke-ScriptAnalyzer -Path ./examples -Recurse -Severity Warning,Error -Settings ./examples/PSScriptAnalyzerSettings.psd1) +
+                      @(Invoke-ScriptAnalyzer -Path ./tests -Recurse -Severity Warning,Error -Settings ./tests/PSScriptAnalyzerSettings.psd1)
+          $findings | Format-Table RuleName, ScriptName, Line, Message -Wrap
+          if ($findings.Count) { throw "$($findings.Count) findings" }
+
+  test:
+    name: Pester (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - shell: pwsh
+        run: |
+          Install-Module Pester -MinimumVersion 5.5.0 -Force -Scope CurrentUser -SkipPublisherCheck
+          $c = New-PesterConfiguration
+          $c.Run.Path = './tests'
+          $c.Run.Exit = $true
+          $c.Output.Verbosity = 'Detailed'
+          $c.TestResult.Enabled = $true
+          $c.CodeCoverage.Enabled = $true
+          $c.CodeCoverage.Path = './src/InfraOps'
+          Invoke-Pester -Configuration $c
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: always()
+        with:
+          name: test-results-${{ matrix.os }}
+          path: |
+            testResults.xml
+            coverage.xml
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+      - run: |
+          curl -sSL https://github.com/gitleaks/gitleaks/releases/download/v8.21.2/gitleaks_8.21.2_linux_x64.tar.gz | tar xz gitleaks
+          ./gitleaks detect --source . --redact --verbose

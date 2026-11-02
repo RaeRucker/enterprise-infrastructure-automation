@@ -1,0 +1,5 @@
+ USERNAME              SESSIONNAME        ID  STATE   IDLE TIME  LOGON TIME
+>svc.monitor           rdp-tcp#12          2  Active          .  11/2/2026 8:05 AM
+ j.alvarez                                 3  Disc        3+04:12  10/29/2026 4:41 PM
+ m.chen                rdp-tcp#14          4  Active         17  11/2/2026 9:30 AM
+ a.okafor                                  5  Disc         2:45  11/2/2026 6:10 AM
