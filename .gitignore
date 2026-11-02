@@ -1,5 +1,5 @@
 # Generated reports and logs
-output/
+/output/
 logs/
 *.log
 testResults.xml

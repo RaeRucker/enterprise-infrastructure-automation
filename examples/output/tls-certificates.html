@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>TLS certificate expiry (synthetic environment)</title>
+<style>
+body{font-family:Segoe UI,system-ui,sans-serif;margin:24px;color:#1f2937}
+h1{font-size:20px;margin:0 0 4px} p{color:#6b7280;margin:0 0 16px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid #e5e7eb;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#f3f4f6} td{min-width:70px} td:nth-child(3){min-width:260px}
+tr.bad td{background:#fef2f2} tr.warn td{background:#fffbeb}
+</style></head><body>
+<h1>TLS certificate expiry (synthetic environment)</h1>
+<p>Generated 2026-11-02 13:02 on vm &middot; 4 row(s)</p>
+<table><thead><tr><th>Endpoint</th><th>Status</th><th>Subject</th><th>Issuer</th><th>NotAfter</th><th>DaysRemaining</th><th>Thumbprint</th><th>PolicyErrors</th></tr></thead>
+<tbody>
+<tr class="warn"><td>api.example.com:443</td><td>Warning</td><td>CN=api.example.com</td><td>CN=Example Issuing CA 01</td><td>2026-11-20 15:02</td><td>18</td><td>000000000000000000000000000000009032BFAF</td><td>None</td></tr>
+<tr class="bad"><td>intranet.corp.example:443</td><td>NameMismatch</td><td>CN=intranet.corp.example</td><td>CN=Example Issuing CA 01</td><td>2027-04-11 15:02</td><td>160</td><td>0000000000000000000000000000000077965071</td><td>RemoteCertificateNameMismatch</td></tr>
+<tr class="bad"><td>legacy.example.com:443</td><td>Critical</td><td>CN=legacy.example.com</td><td>CN=Example Issuing CA 01</td><td>2026-11-06 15:02</td><td>4</td><td>0000000000000000000000000000000048DF6BBF</td><td>None</td></tr>
+<tr><td>portal.example.com:443</td><td>OK</td><td>CN=portal.example.com</td><td>CN=Example Issuing CA 01</td><td>2027-05-31 15:02</td><td>210</td><td>0000000000000000000000000000000070C55772</td><td>None</td></tr>
+</tbody></table></body></html>

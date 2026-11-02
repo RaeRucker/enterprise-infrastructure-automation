@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>Server health (synthetic environment)</title>
+<style>
+body{font-family:Segoe UI,system-ui,sans-serif;margin:24px;color:#1f2937}
+h1{font-size:20px;margin:0 0 4px} p{color:#6b7280;margin:0 0 16px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{border-bottom:1px solid #e5e7eb;padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#f3f4f6} td{min-width:70px} td:nth-child(3){min-width:260px}
+tr.bad td{background:#fef2f2} tr.warn td{background:#fffbeb}
+</style></head><body>
+<h1>Server health (synthetic environment)</h1>
+<p>Generated 2026-11-02 13:02 on vm &middot; 5 row(s)</p>
+<table><thead><tr><th>ComputerName</th><th>Status</th><th>Findings</th><th>UptimeDays</th><th>MemoryUsedPercent</th><th>Disks</th><th>StoppedAutoServices</th><th>PendingReboot</th><th>LastUpdateInstalled</th><th>CollectedAt</th></tr></thead>
+<tbody>
+<tr><td>SRV-APP01</td><td>Healthy</td><td></td><td>6</td><td>62.5</td><td>Drive=C: SizeGB=128 FreeGB=71 FreePercent=55.5</td><td></td><td></td><td>2026-10-24 13:02</td><td>2026-11-02 13:02</td></tr>
+<tr class="warn"><td>SRV-APP02</td><td>Warning</td><td>Uptime 61 days (&gt;= 45); updates may not be applied; Automatic services not running: W3SVC; Reboot pending: Windows Update</td><td>61</td><td>68.8</td><td>Drive=C: SizeGB=128 FreeGB=64 FreePercent=50</td><td>W3SVC</td><td>Windows Update</td><td>2026-10-24 13:02</td><td>2026-11-02 13:02</td></tr>
+<tr class="bad"><td>SRV-SQL01</td><td>Critical</td><td>Memory 93.8% used (&gt;= 85%); Disk E: 6.1% free (&lt;= 10%)</td><td>12</td><td>93.8</td><td>Drive=C: SizeGB=128 FreeGB=40 FreePercent=31.2; Drive=E: SizeGB=512 FreeGB=31 FreePercent=6.1</td><td></td><td></td><td>2026-10-24 13:02</td><td>2026-11-02 13:02</td></tr>
+<tr class="bad"><td>SRV-FS01</td><td>Critical</td><td>Disk D: 5% free (&lt;= 10%); No update installed in the last 35 days</td><td>20</td><td>43.8</td><td>Drive=C: SizeGB=128 FreeGB=50 FreePercent=39.1; Drive=D: SizeGB=2048 FreeGB=102 FreePercent=5</td><td></td><td></td><td>2026-09-15 13:02</td><td>2026-11-02 13:02</td></tr>
+<tr class="bad"><td>SRV-LEGACY03</td><td>Unreachable</td><td>Connection failed: WinRM cannot complete the operation. Verify that the specified computer name is valid.</td><td></td><td></td><td></td><td></td><td></td><td></td><td>2026-11-02 13:02</td></tr>
+</tbody></table></body></html>

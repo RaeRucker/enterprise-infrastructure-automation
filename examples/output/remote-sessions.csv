@@ -1,0 +1,5 @@
+"ComputerName","UserName","SessionName","Id","State","IdleHours","LogonTime","Flagged"
+"SRV-RDS01","svc.monitor","rdp-tcp#12","2","Active","0","2026-11-02 08:05","False"
+"SRV-RDS01","j.alvarez","","3","Disconnected","76.2","2026-10-29 16:41","True"
+"SRV-RDS01","m.chen","rdp-tcp#14","4","Active","0.3","2026-11-02 09:30","False"
+"SRV-RDS01","a.okafor","","5","Disconnected","2.8","2026-11-02 06:10","False"
