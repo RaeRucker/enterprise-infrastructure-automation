@@ -8,6 +8,17 @@ A PowerShell 7 module (`InfraOps`) for recurring infrastructure audits: Windows 
 | Local validation | 72/72 Pester tests, 75.8% command coverage, PSScriptAnalyzer clean ([evidence](docs/validation/README.md)) |
 | Field validation | Not yet run against real servers, AD, Entra ID, or Azure |
 
+## Scenario: what's real and what this repo adds
+
+Real work at an MSP:
+- Audited VMs across the client base affected by Azure VM series retirements and price changes, so clients could be notified with an upgraded series recommended for each VM.
+- Wrote a PowerShell SQL Server health check, published separately as [PowerShell-SQL-HealthCheck](https://github.com/RaeRucker/PowerShell-SQL-HealthCheck).
+
+Added for this repo:
+- `Get-AzVmRetirementReport` rewrites the retirement audit as a reusable module function with a data-driven retirement map. It is not the script used at work.
+- `Get-ServerHealth` follows the same idea as the SQL health check, applied to Windows Server.
+- The Active Directory, privileged group, remote session, DNS, TLS, and Entra ID guest functions, the module structure, the logging, and the Pester tests were built for this repo.
+
 ## Problem
 
 Recurring checks (low disk, stopped services, stale accounts, expiring certificates, inconsistent DNS) are usually separate scripts with hardcoded thresholds, inconsistent output, no tests, and destructive steps without safeguards. When one fails partway, the whole run produces nothing. When someone runs a cleanup script against the wrong OU, there's no confirmation and no audit trail.
