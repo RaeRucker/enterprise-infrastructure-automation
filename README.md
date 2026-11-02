@@ -10,14 +10,14 @@ A PowerShell 7 module (`InfraOps`) for recurring infrastructure audits: Windows 
 
 ## Scenario: what's real and what this repo adds
 
-Real work at an MSP:
-- Audited VMs across the client base affected by Azure VM series retirements and price changes, so clients could be notified with an upgraded series recommended for each VM.
+What I've done in production:
+- Audited VMs across multiple Azure environments affected by VM series retirements and price changes, with an upgraded series recommended for each VM.
 - Wrote a PowerShell SQL Server health check, published separately as [PowerShell-SQL-HealthCheck](https://github.com/RaeRucker/PowerShell-SQL-HealthCheck).
 
 Added for this repo:
 - `Get-AzVmRetirementReport` rewrites the retirement audit as a reusable module function with a data-driven retirement map. It is not the script used at work.
 - `Get-ServerHealth` follows the same idea as the SQL health check, applied to Windows Server.
-- The Active Directory, privileged group, remote session, DNS, TLS, and Entra ID guest functions, the module structure, the logging, and the Pester tests were built for this repo.
+- The Active Directory, privileged group, remote session, DNS, TLS, and Entra ID guest functions, the module structure, the logging, and the Pester tests.
 
 ## Problem
 
